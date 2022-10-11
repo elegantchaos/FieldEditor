@@ -1,4 +1,4 @@
-// swift-tools-version:5.6
+// swift-tools-version:5.7
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 //  Created by Sam Deane on 11/10/2022.
@@ -11,7 +11,7 @@ let package = Package(
     name: "FieldEditor",
 
     platforms: [
-        .macOS(.v12), .macCatalyst(.v15), .iOS(.v15), .tvOS(.v15), .watchOS(.v8)
+        .macOS(.v13), .macCatalyst(.v16), .iOS(.v16), .tvOS(.v16), .watchOS(.v9)
     ],
 
     products: [
