@@ -5,24 +5,42 @@
 
 import SwiftUI
 
-struct TemplateEditorView<Controller: TemplateController>: View {
+public struct TemplateEditorView<Controller: TemplateController>: View {
     
     let controller: Controller
     @ObservedObject var template: Template
 
-    init(controller: Controller, template: Template) {
+    public init(controller: Controller, template: Template) {
         self.controller = controller
         self.template = template
     }
 
-    var body: some View {
+    public var body: some View {
         List {
             ForEach(template.fields) { field in
                 TemplateEditorFieldView(controller: controller, field: field)
             }
             .onMove(perform: template.moveFields)
             .onDelete(perform: template.deleteFields)
+
+                HStack {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.title2)
+                        .foregroundColor(.green)
+//                    
+//                    Text("New Field")
+//                        .padding(.leading)
+                }
+                .onTapGesture(perform: handleNewField)
+
         }
+        .environment(\.editMode, .constant(.active))
+    }
+    
+    func handleNewField() {
+        print("blah")
+        let field = controller.newField()
+        template.addField(field)
     }
 }
 

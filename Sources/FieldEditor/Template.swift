@@ -5,14 +5,15 @@
 
 import SwiftUI
 
-class Template: ObservableObject {
+public class Template: ObservableObject {
     @Published var fields: [TemplateField]
 
-    init() {
+    public init() {
         self.fields = []
     }
     
-    func addField(_ field: TemplateField) {
+    public func addField(_ field: TemplateField) {
+        objectWillChange.send()
         self.fields.append(field)
     }
 

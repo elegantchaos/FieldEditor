@@ -20,9 +20,7 @@ struct TemplateEditorFieldView<Controller: TemplateController>: View {
         HStack {
             TextField("label", text: $field.key, onEditingChanged: handleEditingChanged, onCommit: handleCommit)
             
-            Button(action: { print("blah") }) {
-                FieldKindMenu(controller: controller, field: field)
-            }
+            FieldKindMenu(controller: controller, field: field)
         }
     }
     

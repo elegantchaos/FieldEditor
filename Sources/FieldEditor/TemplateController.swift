@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-protocol TemplateController: ObservableObject {
+public protocol TemplateController: ObservableObject {
     var defaultKind: String { get }
     var defaultKey: String { get }
     var defaultIcon: String { get }
@@ -15,33 +15,44 @@ protocol TemplateController: ObservableObject {
     func label(forField field: TemplateField) -> String
     func image(forField field: TemplateField) -> String
     func makeField(key: String?, kind: String?, icon: String?) -> TemplateField
+    
 }
 
-class SimpleTemplateController: TemplateController {
+public extension TemplateController {
+    func newField() -> TemplateField {
+        return makeField(key: defaultKey, kind: defaultKind, icon: defaultIcon)
+    }
+}
+
+public class SimpleTemplateController: TemplateController {
     typealias Key = String
     typealias Icon = String
     typealias Kind = String
     
-    var defaultKind: String { "string" }
-    var defaultIcon: String { "tag" }
-    var defaultKey: String { "key" }
+    public var defaultKind: String { "string" }
+    public var defaultIcon: String { "tag" }
+    public var defaultKey: String { "key" }
     
-    var allKinds: [String] {
+    public init() {
+    }
+    
+    public var allKinds: [String] {
         return [
             "string",
             "paragraph",
             "date"
         ]
     }
-    func label(forField field: TemplateField) -> String {
+    
+    public func label(forField field: TemplateField) -> String {
         return field.key
     }
     
-    func image(forField field: TemplateField) -> String {
+    public func image(forField field: TemplateField) -> String {
         field.icon
     }
 
-    func makeField(key: String? = nil, kind: String? = nil, icon: String? = nil) -> TemplateField {
+    public func makeField(key: String? = nil, kind: String? = nil, icon: String? = nil) -> TemplateField {
         return TemplateField(
             key: key ?? "untitled",
             icon: icon ?? "tag",

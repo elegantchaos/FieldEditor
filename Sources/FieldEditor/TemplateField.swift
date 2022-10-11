@@ -5,8 +5,8 @@
 
 import SwiftUI
 
-class TemplateField: ObservableObject {
-    internal init(key: String, icon: String, kind: String) {
+public class TemplateField: ObservableObject {
+    public init(key: String, icon: String, kind: String) {
         self.key = key
         self.icon = icon
         self.kind = kind
@@ -23,7 +23,7 @@ class TemplateField: ObservableObject {
 }
 
 extension TemplateField: Identifiable {
-    var id: String { key }
+    public var id: String { key }
 }
 
 struct PreviewSupport {
